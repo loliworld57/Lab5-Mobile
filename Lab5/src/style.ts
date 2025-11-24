@@ -37,6 +37,7 @@ export const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: "bold",
         marginBottom: 5,
+        color: "#4d7688ff"
     },
 
     cardPrice: {
@@ -48,7 +49,7 @@ export const styles = StyleSheet.create({
 
     cardDesc: {
         fontSize: 13,
-        color: "#555",
+        color: "#17ade3ff",
     },
     homeTitle: {
         fontSize: 28,

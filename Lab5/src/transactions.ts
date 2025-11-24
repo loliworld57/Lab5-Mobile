@@ -1,0 +1,40 @@
+import axios from "axios";
+
+const BASE_URL = "https://kami-backend-5rs0.onrender.com";
+
+export interface Transaction {
+    _id: string;
+    name: string;
+    price: number;
+    quantity: number;
+    createdAt: string;
+}
+
+export interface TransactionDetail {
+    _id: string;
+    id: string;
+    customer: {
+        name: string;
+        phone: string;
+    };
+    services: {
+        _id: string;
+        name: string;
+        price: number;
+        quantity: number;
+    }[];
+    priceBeforePromotion: number;
+    price: number;
+    status: string;
+    createdAt: string;
+}
+
+export const getAllTransactions = async (): Promise<Transaction[]> => {
+    const res = await axios.get(`${BASE_URL}/transactions`);
+    return res.data;
+};
+
+export const getTransactionDetail = async (_id: string): Promise<TransactionDetail> => {
+    const res = await axios.get(`${BASE_URL}/transactions/${_id}`);
+    return res.data;
+};
