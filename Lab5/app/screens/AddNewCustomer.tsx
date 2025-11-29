@@ -83,7 +83,7 @@ export default function addNewCustomer() {
                     style={styles.button}
                 >
                     <Text style={{ color: "#fff", fontSize: 16, fontWeight: "bold" }}>
-                        Add Service
+                        Add Customer
                     </Text>
                 </TouchableOpacity>
             )}

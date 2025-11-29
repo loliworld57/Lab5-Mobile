@@ -26,3 +26,27 @@ export const addCustomer = async (name: string, phone: string, token: string) =>
     );
     return res.data;
 }
+
+export const getCustomerById = async (id: string): Promise<Customer> => {
+    const res = await axios.get(`${BASE_URL}/Customers/${id}`);
+    return res.data;
+}
+
+export const deleteCustomerById = async (id: string, token: string) => {
+    const res = await axios.delete(
+        `${BASE_URL}/customers/${id}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+    );
+    return res.data;
+}
+export async function updateCustomerById(id: string, body: any, token: string) {
+    const res = await fetch(`${BASE_URL}/customers/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(body),
+    });
+    return await res.json();
+}

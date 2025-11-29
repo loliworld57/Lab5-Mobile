@@ -75,5 +75,11 @@ export const styles = StyleSheet.create({
         borderRadius: 8,           
         alignItems: "center",       
         marginTop: 12
+    },
+    dropdown: {
+        backgroundColor: "#ffffff",
+        borderWidth: 2,
+        borderColor: "#66afc3ff",
+        padding: 10,
     }
 });

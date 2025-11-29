@@ -1,5 +1,6 @@
 import { styles } from "@/src/style";
 import { getAllTransactions } from "@/src/transactions";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { router } from "expo-router";
 import { useEffect, useState } from "react";
 import { ActivityIndicator, FlatList, Text, TouchableOpacity, View } from "react-native";
@@ -33,6 +34,17 @@ export default function Transactions() {
 
   return (
     <View style={styles.container}>
+      <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", backgroundColor: '#f0f4f5', padding: 10, borderRadius: 8, marginBottom: 12 }}>
+        <Text style={styles.cardTitle}>Danh Sách Giao Dịch</Text>
+
+        <TouchableOpacity onPress={load}>
+          <Ionicons name="refresh" size={28} color="#4d7688ff" />
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => router.push("/screens/AddNewTransaction")}>
+          <Ionicons name="add-circle" size={28} color="#4d7688ff" />
+        </TouchableOpacity>
+      </View>
       <FlatList
         data={data}
         keyExtractor={(item) => item._id}

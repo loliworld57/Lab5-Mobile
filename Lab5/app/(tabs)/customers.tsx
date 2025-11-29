@@ -28,6 +28,9 @@ export default function CustomersScreen() {
             <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center", backgroundColor: '#f0f4f5', padding: 10, borderRadius: 8, marginBottom: 12 }}>
                 <Text style={styles.cardTitle}>Danh Sách Khách Hàng</Text>
 
+                <TouchableOpacity onPress={loadData}>
+                    <Ionicons name="refresh" size={28} color="#4d7688ff" />
+                </TouchableOpacity>
                 <TouchableOpacity onPress={() => router.push("/screens/AddNewCustomer")}>
                     <Ionicons name="add-circle" size={28} color="#4d7688ff" />
                 </TouchableOpacity>
@@ -37,13 +40,22 @@ export default function CustomersScreen() {
                 data={customers}
                 keyExtractor={(item) => item._id}
                 renderItem={({ item }) => (
-                    <View style={styles.card}>
-                        <Text style={styles.cardTitle}>
-                            {item.name} - {item.phone}
-                        </Text>
-                        <Text>Loyalty: {item.loyalty}</Text>
-                        <Text style={styles.cardPrice}>Total Spent: {item.totalSpent} VND</Text>
-                    </View>
+                    <TouchableOpacity
+                        onPress={() =>
+                            router.push({
+                                pathname: "/screens/CustomerDetail",
+                                params: { id: item._id }
+                            })
+                        }
+                    >
+                        <View style={styles.card}>
+                            <Text style={styles.cardTitle}>
+                                {item.name} - {item.phone}
+                            </Text>
+                            <Text>Loyalty: {item.loyalty}</Text>
+                            <Text style={styles.cardPrice}>Total Spent: {item.totalSpent} VND</Text>
+                        </View>
+                    </TouchableOpacity>
                 )}
             />
         </View >
