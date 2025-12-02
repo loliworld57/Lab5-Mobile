@@ -1,5 +1,5 @@
 import { styles } from "@/src/style";
-import { cancelTransactionById, getTransactionDetail } from "@/src/transactions";
+import { deleteTransactionById, getTransactionDetail } from "@/src/transactions";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import { useEffect, useLayoutEffect, useState } from "react";
@@ -28,11 +28,12 @@ export default function TransactionDetail() {
         load();
     }, [id]);
 
-    // Cancel transaction
-    const handleCancel = async () => {
+
+    // Delete transaction
+    const handleDelete = async () => {
         Alert.alert(
-            "Confirm Cancel",
-            "Are you sure you want to cancel this transaction?",
+            "Confirm Delete",
+            "Are you sure you want to delete this transaction? This action cannot be undone.",
             [
                 { text: "No", style: "cancel" },
                 {
@@ -43,13 +44,13 @@ export default function TransactionDetail() {
                         if (!token) return alert("Unauthorized");
 
                         try {
-                            await cancelTransactionById(String(id), token);
-                            Alert.alert("Success", "Transaction cancelled!", [
+                            await deleteTransactionById(String(id), token);
+                            Alert.alert("Success", "Transaction deleted!", [
                                 { text: "OK", onPress: () => navigation.goBack() }
                             ]);
                         } catch (err) {
                             console.log(err);
-                            alert("Failed to cancel transaction");
+                            alert("Failed to delete transaction");
                         }
                     }
                 }
@@ -92,10 +93,10 @@ export default function TransactionDetail() {
                     shadowOpacity: 0.86,
                 }]}>
                     <TouchableOpacity
-                        onPress={() => { setShowMenu(false); handleCancel(); }}
+                        onPress={() => { setShowMenu(false); handleDelete(); }}
                         style={{ paddingVertical: 10 }}
                     >
-                        <Text style={{ color: "red", fontWeight: "bold" }}>Cancel Transaction</Text>
+                        <Text style={{ color: "darkred", fontWeight: "bold" }}>Cancel Transaction</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity

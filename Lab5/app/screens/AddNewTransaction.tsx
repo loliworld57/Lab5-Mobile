@@ -101,10 +101,9 @@ export default function AddNewTransaction() {
                 placeholder="Select Customer"
                 value={selectedCustomerId}
                 onChange={item => setSelectedCustomerId(item.value)}
-                style={[styles.input,{ marginVertical: 10, borderWidth: 1, borderColor: "#ccc", borderRadius: 8, paddingHorizontal: 10 }]}
+                style={[styles.input]}
             />
 
-            {/* Service selection */}
             <FlatList
                 data={services}
                 keyExtractor={item => item._id}
@@ -124,7 +123,6 @@ export default function AddNewTransaction() {
 
                             {isSelected && (
                                 <>
-                                    {/* Quantity */}
                                     <TextInput
                                         style={styles.input}
                                         keyboardType="number-pad"
@@ -133,7 +131,6 @@ export default function AddNewTransaction() {
                                         placeholder="Quantity"
                                     />
 
-                                    {/* Staff dropdown */}
                                     <Dropdown
                                         data={users.map(u => ({ label: u.name, value: u._id }))}
                                         labelField="label"
